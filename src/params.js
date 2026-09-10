@@ -47,7 +47,7 @@ const SceneParams = {
     HACKS_l_k: false,
 
     // Terrain visible?
-    TERRAIN: false,
+    TERRAIN: true,
 
     // Game settings
     PAUSED: true,

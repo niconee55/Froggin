@@ -3,8 +3,8 @@ import DEATH from './death.html';
 import SCORE from './score.html';
 
 import styles from './styles.css';
-import { AudioLoader, Audio, AudioListener } from 'three';
 import SceneParams from '../params';
+import { playBackgroundMusic } from '../audio';
 
 // initialize menu
 export function init_pages(window, document) {
@@ -42,21 +42,9 @@ export function init_pages(window, document) {
             let opac = menu.style.opacity;
             menu.style.opacity = opac == '' ? 0 : '';
             
-            // audio
-            const listener = new AudioListener();
-            const sound = new Audio(listener);
-            const audioLoader = new AudioLoader();
             if (started == false) {
                 started = true;
-                audioLoader.load(
-                    'https://raw.githubusercontent.com/msnxus/Froggin/main/src/sounds/music.mp3',
-                    function (buffer) {
-                        sound.setBuffer(buffer);
-                        sound.setLoop(true);
-                        sound.setVolume(0.2);
-                        sound.play();
-                    }
-                );
+                playBackgroundMusic();
             }
             
         }

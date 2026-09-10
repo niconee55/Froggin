@@ -20,7 +20,8 @@ import { BasicLights } from 'lights';
 import SceneParams from '../../params';
 import AimGuide from '../objects/AimGuide/AimGuide';
 import Tongue from '../objects/Tongue/Tongue';
-import { AudioLoader, Audio, AudioListener } from 'three';
+import { playSound, Sounds } from '../../audio';
+import starTexture from './stars.jpg';
 
 class SeedScene extends Scene {
     constructor() {
@@ -38,9 +39,7 @@ class SeedScene extends Scene {
 
         // Set background to a nice color
         this.background = new Color(0x7ec0ee);
-        this.background = new TextureLoader().load(
-            'https://raw.githubusercontent.com/msnxus/Froggin/main/src/components/scenes/stars.jpg'
-        );
+        this.background = new TextureLoader().load(starTexture);
 
         // this.fogColor = new Color(0xd192a4);
 
@@ -61,7 +60,7 @@ class SeedScene extends Scene {
         water.rotation.x = -Math.PI / 2; // Rotates it to be parallel to the ground
         this.water = water;
         this.add(this.water);
-        this.water.visible = true;
+        this.water.visible = !SceneParams.TERRAIN;
 
         this.terrain = new Terrain(this.frog);
         this.scenes = [this.terrain];
@@ -72,7 +71,7 @@ class SeedScene extends Scene {
             this.terrain,
             this.AimGuide
         );
-        this.terrain.visible = false;
+        this.terrain.visible = SceneParams.TERRAIN;
 
         // Event listeners
         this.keyDownTime = 0;
@@ -253,18 +252,7 @@ class SeedScene extends Scene {
                     this.camera.getWorldPosition(cameraPostion);
                     this.camera.getWorldDirection(cameraDirection);
                     raycaster.set(cameraPostion, cameraDirection);
-                    const listener = new AudioListener();
-                    const sound = new Audio(listener);
-                    const audioLoader = new AudioLoader();
-                    audioLoader.load(
-                        'https://raw.githubusercontent.com/msnxus/Froggin/main/src/sounds/lick.mp3',
-                        function (buffer) {
-                            sound.setBuffer(buffer);
-                            sound.setLoop(false);
-                            sound.setVolume(1);
-                            sound.play();
-                        }
-                    );
+                    playSound(Sounds.lick);
                     // Collision with flies
                     this.children.forEach((child) => {
                         if (child.name == 'fly') {
@@ -277,18 +265,7 @@ class SeedScene extends Scene {
                                 this.remove(child);
                                 this.fliesScore += 2;
                                 this.checkCollision(this.frog, this.lillyPadGenerator.getPads());
-                                const listener = new AudioListener();
-                                const sound = new Audio(listener);
-                                const audioLoader = new AudioLoader();
-                                audioLoader.load(
-                                    'https://raw.githubusercontent.com/msnxus/Froggin/main/src/sounds/gulp.wav',
-                                    function (buffer) {
-                                        sound.setBuffer(buffer);
-                                        sound.setLoop(false);
-                                        sound.setVolume(1);
-                                        sound.play();
-                                    }
-                                );
+                                playSound(Sounds.gulp);
                             }
                         }
                     });
@@ -322,18 +299,7 @@ class SeedScene extends Scene {
                     // Handle collision here (e.g., stop the frog, trigger a score increase, etc.)
 
                     if (this.lillyPadGenerator.current !== pad) {
-                        const listener = new AudioListener();
-                        const sound = new Audio(listener);
-                        const audioLoader = new AudioLoader();
-                        audioLoader.load(
-                            'https://raw.githubusercontent.com/msnxus/Froggin/main/src/sounds/land.wav',
-                            function (buffer) {
-                                sound.setBuffer(buffer);
-                                sound.setLoop(false);
-                                sound.setVolume(0.5);
-                                sound.play();
-                            }
-                        );
+                        playSound(Sounds.land, { volume: 0.5 });
                         this.lillyPadGenerator.setNextLillyPad(pad);
                     }
                     pad.stopMovement();

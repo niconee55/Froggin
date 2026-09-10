@@ -12,7 +12,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import MODEL from './Frog.glb';
 import SceneParams from '../../../params';
-import { AudioLoader, Audio, AudioListener } from 'three';
+import { playSound, Sounds } from '../../../audio';
 import Tongue from '../Tongue/Tongue';
 
 class Frog extends Group {
@@ -118,18 +118,7 @@ class Frog extends Group {
 
     jump(power) {
         if (this.onGround && !this.frozen) {
-            const listener = new AudioListener();
-            const sound = new Audio(listener);
-            const audioLoader = new AudioLoader();
-            audioLoader.load(
-                'https://raw.githubusercontent.com/msnxus/Froggin/main/src/sounds/jump.wav',
-                function (buffer) {
-                    sound.setBuffer(buffer);
-                    sound.setLoop(false);
-                    sound.setVolume(1);
-                    sound.play();
-                }
-            );
+            playSound(Sounds.jump);
             this.tweens.forEach((tween) => tween.stop());
             this.tweens = [];
             let totalRotation = this.rotation.y - Math.PI / 2;
@@ -349,18 +338,7 @@ class Frog extends Group {
             }, 800);
 
             // audio
-            const listener = new AudioListener();
-            const sound = new Audio(listener);
-            const audioLoader = new AudioLoader();
-            audioLoader.load(
-                'https://raw.githubusercontent.com/msnxus/Froggin/main/src/sounds/death.wav',
-                function (buffer) {
-                    sound.setBuffer(buffer);
-                    sound.setLoop(false);
-                    sound.setVolume(0.2);
-                    sound.play();
-                }
-            );
+            playSound(Sounds.death, { volume: 0.2 });
         }
     }
 }
