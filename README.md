@@ -3,7 +3,7 @@ Project by Nicolas Nee, Ryan Hoffman, Ayo Oguntola, and Tyler Benson
 
 Endless frog platformer with automatic terrain generation and movement mechanics.
 
-## Pages Link
+## Game Link
 https://niconee55.github.io/Froggin/
 
 ## Youtube Video Link
