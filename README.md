@@ -1,5 +1,8 @@
 ## Froggin
 Project by Nicolas Nee, Ryan Hoffman, Ayo Oguntola, and Tyler Benson
+
+Endless frog platformer with automatic terrain generation and movement mechanics.
+
 ## Youtube Video Link
 https://youtu.be/tUl-VPF1PkI
 
@@ -7,7 +10,19 @@ https://youtu.be/tUl-VPF1PkI
 https://docs.google.com/document/d/1KLVc6gF3ilO1SPWKjl3dRvcgzWwNsQDRhPOUnM_bIng/edit?usp=sharing
 
 ## Pages Link
-https://msnxus.github.io/Froggin/
+https://niconee55.github.io/Froggin/
+
+## Hosting
+
+This repo deploys to GitHub Pages from the generated `build` folder.
+
+```bash
+npm install
+npm run deploy
+```
+
+After deploy, use the Pages link above. In GitHub settings, make sure Pages is
+serving from the `gh-pages` branch.
 
 ## CREDITS:
 - "Game Music from https://www.zapsplat.com"

@@ -2,7 +2,7 @@
   "name": "froggin",
   "repository": "Froggin",
   "version": "0.1.0",
-  "homepage": "https://msnxus.github.io/Froggin",
+  "homepage": "https://niconee55.github.io/Froggin",
   "title": "Froggin in my Frog",
   "description": "Hop from lilypad to lilypad!",
   "keywords": [
@@ -11,9 +11,9 @@
     "three.js",
     "COS 426",
     "keywor0d",
-    "keyword1",
-    "keyword2-etc",
-    "but this last entry CANNOT have a comma after it ->"
+    "endless-runner",
+    "procedural-terrain",
+    "movement"
   ],
   "scripts": {
     "start": "webpack-dev-server --mode development --output-public-path \"\"",
