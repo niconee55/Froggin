@@ -7,19 +7,23 @@
 	background: rgba(0, 0, 0, 0.45);
 	backdrop-filter: blur(20px);
     transform: translate(-50%, -50%);
-    width: 40vw;
-    padding: 2em;
+    box-sizing: border-box;
+    width: clamp(18rem, 42vw, 36rem);
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+    padding: clamp(0.75rem, 2.5vh, 2rem);
     text-align: center;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-family: 'Roboto', sans-serif;
     color: #fff;
-    overflow: hidden;
+    overflow: auto;
     transition: opacity 0.25s ease-in-out;
 }
 
 .menu-frog-image {
-    max-width: 20rem; 
+    max-width: min(20rem, 70vw);
+    max-height: clamp(5rem, 20vh, 12rem);
     height: auto;
 }
 
@@ -39,17 +43,19 @@
 }
 
 .game-description {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 1.8vh, 1.2rem);
     font-weight: 400;
-    margin: 0 0 1em 0;
-    line-height: 1.6;
+    margin: 0 0 clamp(0.5rem, 1.5vh, 1em) 0;
+    line-height: 1.35;
 }
 
 .instructions {
+    box-sizing: border-box;
+    font-size: clamp(0.72rem, 1.65vh, 1rem);
     text-align: left;
-    margin: 2em 0;
+    margin: clamp(0.5rem, 2vh, 2em) 0;
     border: 1px solid white;
-    padding: 10px;
+    padding: clamp(0.4rem, 1.2vh, 0.75rem);
 
 }
 
@@ -59,8 +65,8 @@
 }
 
 .instructions li {
-    line-height: 1.6;
-    margin: 0.5em 0;
+    line-height: 1.35;
+    margin: clamp(0.2rem, 0.8vh, 0.5em) 0;
     position: relative;
     padding-left: 1.4em;
 }
@@ -71,6 +77,22 @@
     left: 0;
     color: white;
     font-size: 1.2em;
+}
+
+@media (max-height: 640px) {
+    .menu-frog-image {
+        max-height: 14vh;
+    }
+
+    .instructions {
+        line-height: 1.25;
+    }
+}
+
+@media (max-width: 640px) {
+    #menu {
+        width: calc(100vw - 1rem);
+    }
 }
 
 #death {
